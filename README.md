@@ -1,2 +1,3 @@
 # BlindScope
-Software Engineering II - UCD Batch 6
+UCD Batch 6 - Software Engineering II 
+Stock Market Simulator Game
