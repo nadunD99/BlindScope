@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -19,21 +19,27 @@ namespace DAL
         private List<int> DID = new List<int>();
         private List<int> DValue = new List<int>();
         private List<string> DDATE = new List<string>();
-        private int ID;
-        private string Date, NAME, PWORD;
+        private int ID,ID1,NUMBER;
+        private string Date, NAME, PWORD,SECNAME,STOCKNAME;
+        private int STOKCVAL, STOCKS, SPPROFIT, SPLOST, SPTOCK, PSTROKPRICE, SALESTOCKPRICE, SALESSTOCKVAL, PTOT, STOT, BALANCE;        
         Timer t;
-        decimal LOST, BALACE, PROFIT;
+        decimal LOST, BALACE, PROFIT,PPRICE;
+        int PSTOCK;
         #endregion
         public csDBOperator()
         {
             Values = csProperties.Value;
             ID = csProperties.ID;
+            ID1 = csProperties.ID1;
             Date = csProperties.Date;
             NAME = csProperties.Name;
             PWORD = csProperties.Pword;
+            NUMBER = csProperties.Number;
+            BALACE = csProperties.Balance;
+            PPRICE = csProperties.Price;
           
         }
-
+        
         public void mcbgetTableAvailable(out List<int> TBNO)
         {
             try
@@ -82,6 +88,7 @@ namespace DAL
                         cmd.Parameters.AddWithValue("@no", 1);
                         cmd.Parameters.AddWithValue("@name", NAME);
                         cmd.Parameters.AddWithValue("@id", 0);
+                        cmd.Parameters.AddWithValue("@id2", 0);
 
                         sqlnonquery();
 
@@ -105,7 +112,7 @@ namespace DAL
             {
                using (con = new SqlConnection(cs))
                     {
-
+                          
                         open_connection();
                         sqlquery("sp_insertData");
                         cmd.CommandType = CommandType.StoredProcedure;
@@ -114,11 +121,89 @@ namespace DAL
                         cmd.Parameters.AddWithValue("@no",ID );
                         cmd.Parameters.AddWithValue("@name", NAME);
                         cmd.Parameters.AddWithValue("@id", 0);
-
-                        sqlnonquery();
+                        cmd.Parameters.AddWithValue("@balance", BALACE);
+                        cmd.Parameters.AddWithValue("@price", 0);
+                        cmd.Parameters.AddWithValue("@id2", 0);
+                    sqlnonquery();
 
                     }
               
+                return "save";
+            }
+
+            catch (SqlException ex)
+            {
+                return ex.ToString();
+            }
+            finally
+            {
+                closeconnection();
+            }
+        }
+        public string mdDataFEED2()
+        {
+            try
+            {
+                using (con = new SqlConnection(cs))
+                {
+
+                    open_connection();
+                    sqlquery("sp_insertData");
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@DDate", "");
+                    cmd.Parameters.AddWithValue("@GetValue",NUMBER);
+                    cmd.Parameters.AddWithValue("@no", 3);
+                    cmd.Parameters.AddWithValue("@name", NAME);
+                    cmd.Parameters.AddWithValue("@id", ID);
+                    cmd.Parameters.AddWithValue("@balance", BALACE);
+                    cmd.Parameters.AddWithValue("@price", PPRICE);
+                    cmd.Parameters.AddWithValue("@id2", ID1);
+                    sqlnonquery();
+
+                }
+
+                return "save";
+            }
+
+            catch (SqlException ex)
+            {
+                return ex.ToString();
+            }
+            finally
+            {
+                closeconnection();
+            }
+        }
+        public string mdDataFEED3()
+        {
+            try
+            {
+                using (con = new SqlConnection(cs))
+                {
+
+                    open_connection();
+                    sqlquery("sp_salespro");
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@uname",NAME);
+                    cmd.Parameters.AddWithValue("@secname",SECNAME);
+                    cmd.Parameters.AddWithValue("@stockname",STOCKNAME);
+                    cmd.Parameters.AddWithValue("@stockval", STOKCVAL);
+                    cmd.Parameters.AddWithValue("@stocks", STOCKS);
+                    cmd.Parameters.AddWithValue("@profit", SPPROFIT);
+                    cmd.Parameters.AddWithValue("@lost", SPLOST);
+                    cmd.Parameters.AddWithValue("@id", ID);
+                    cmd.Parameters.AddWithValue("@id2", ID1);
+                    cmd.Parameters.AddWithValue("@pstockval", SPTOCK);
+                    cmd.Parameters.AddWithValue("@pstockprice", PSTROKPRICE);
+                    cmd.Parameters.AddWithValue("@saleStockproice", SALESSTOCKVAL);
+                    cmd.Parameters.AddWithValue("@saleStockval", SALESTOCKPRICE);
+                    cmd.Parameters.AddWithValue("@ptot", PTOT);
+                    cmd.Parameters.AddWithValue("@stot", STOT);
+                    cmd.Parameters.AddWithValue("@balance", BALANCE);
+                    sqlnonquery();
+
+                }
+
                 return "save";
             }
 
@@ -207,7 +292,7 @@ namespace DAL
                 closeconnection();
             }
         }
-        public void mcbgetPlayerStat(out decimal OLOST, out decimal OPROFIT, out decimal OBALACE, string PUNAME)
+        public void mcbgetPlayerStat(out decimal OPPRICE,out decimal OPSTOCK,out decimal OLOST, out decimal OPROFIT, out decimal OBALACE, string PUNAME)
         {
             try
             {
@@ -220,22 +305,79 @@ namespace DAL
                     quryEx2();
                     while (dr.Read())
                     {
-                        LOST = dr.GetDecimal(1);
-                        BALACE = dr.GetDecimal(2);
-                        PROFIT = dr.GetDecimal(3);
+                        LOST = dr.GetDecimal(2);
+                        BALACE = dr.GetDecimal(5);
+                        PROFIT = dr.GetDecimal(1);
+                        PPRICE = dr.GetDecimal(4);
+                        PSTOCK = dr.GetInt32(3);
                     }
                 }
+                OPPRICE = PPRICE;
+                OPSTOCK = PROFIT;
                 OLOST = LOST;
                 OBALACE = BALACE;
                 OPROFIT = PROFIT;
+
                 ex = "OK";
             }
             catch (SqlException e)
             {
+                OPPRICE = PPRICE;
+                OPSTOCK = PROFIT;
                 OLOST = LOST;
                 OBALACE = BALACE;
                 OPROFIT = PROFIT;
                 ex = e.ToString();
+            }
+            finally
+            {
+                closeconnection();
+            }
+        }
+        public int mgetSALE(out int price, out int stock, out  string name1, out string name2)
+        {
+            try
+            {
+                using (con = new SqlConnection(cs))
+                {
+                    open_connection();
+                    sqlquery("SP_SALE");
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlParameter output = new SqlParameter("@PRICE", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                    SqlParameter output2 = new SqlParameter("@STOCK", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                    SqlParameter output3 = new SqlParameter("@NAME1", SqlDbType.VarChar,50) { Direction = ParameterDirection.Output };
+                    SqlParameter output4 = new SqlParameter("@NAME2", SqlDbType.VarChar, 50) { Direction = ParameterDirection.Output };
+
+                    cmd.Parameters.AddWithValue("@UNAME",NAME);
+                    cmd.Parameters.AddWithValue("@ID",1);
+                    cmd.Parameters.AddWithValue("@ID2",1);
+                    
+                    cmd.Parameters.Add(output);
+                    cmd.Parameters.Add(output2);
+                    cmd.Parameters.Add(output3);
+                    cmd.Parameters.Add(output4);
+
+                    sqlexcescaler();
+
+                    price = Convert.ToInt32(output.Value.ToString());
+                    stock = Convert.ToInt32(output2.Value.ToString());
+                    name1 = Convert.ToString(output3.Value.ToString());
+                    name2 = Convert.ToString(output4.Value.ToString());
+
+
+                }
+                ex = "DONE";
+                return count;
+            }
+            catch (Exception e)
+            {
+                ex = e.ToString();
+                price = 0;
+                stock = 0;
+                name2 = e.ToString();
+                name1 = e.ToString();
+                return 0;
             }
             finally
             {

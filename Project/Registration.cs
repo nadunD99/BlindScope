@@ -11,8 +11,7 @@ using DAL;
 
 namespace Project
 {
-    public partial class Registration : MetroFramework .Forms .MetroForm
-    
+    public partial class Registration : Form
     {
         string x;
         public Registration()
@@ -40,11 +39,6 @@ namespace Project
         }
       
         private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Registration_Load(object sender, EventArgs e)
         {
 
         }

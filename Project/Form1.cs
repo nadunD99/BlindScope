@@ -15,7 +15,7 @@ using System.Threading;
 
 namespace Project
 {
-    public partial class Form1 : MetroFramework .Forms .MetroForm
+    public partial class Form1 : Form
     {
 
         #region variables
@@ -26,7 +26,7 @@ namespace Project
         string ex;
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         List<int> GetVala = new List<int>();
-        decimal OLOST, OBALACE, OPROFIT;
+        decimal OLOST, OBALACE, OPROFIT, OPPRICE,OPSTOCK;
         private List<int> DID = new List<int>();
         private List<int> DValue = new List<int>();
         private List<string> DDATE = new List<string>();
@@ -178,7 +178,18 @@ namespace Project
 
         private void button6_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(uname);
+            BuyStock obb = new BuyStock(label1.Text,OBALACE);
+            obb.ShowDialog();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            label9.Text = csProperties.Number.ToString();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            mLoadSecondList();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -192,24 +203,37 @@ namespace Project
             timer.Stop();
         }
 
-        private void chart1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button7_Click(object sender, EventArgs e)
         {
-            mLoadplyerStat();
+            csProperties.StockValu = Convert.ToInt32(label1.Text);
+            Sale obj = new Sale();
+            obj.ShowDialog();
         }
+        List<string> data = new List<string>();
+        void clearList()
+        {
+            data.Clear();
+            //listBox2.Items.Clear();
+        }
+        
+
         void mLoadplyerStat()
         {
-            obj.mcbgetPlayerStat(out OLOST,out OPROFIT,out OBALACE,uname);
-            List<string> data = new List<string>();
-            data.Add(uname);
+            obj.mcbgetPlayerStat(out OPPRICE,out OPSTOCK,out OLOST,out OPROFIT,out OBALACE,uname);
+           data.Add(uname);
             data.Add(OPROFIT.ToString());
             data.Add(OLOST.ToString());
             data.Add(OBALACE.ToString());
+            data.Add(OPPRICE.ToString());
+            data.Add(OPSTOCK.ToString());
             listBox2.DataSource = data;
+
+        }
+        void mLoadSecondList()
+        {
+            listBox1.Items.Add(csProperties.Number);
+            listBox1.Items.Add(csProperties.Balance);
+            listBox1.Items.Add(csProperties.Price);
 
         }
     }

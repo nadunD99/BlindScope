@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<connectionStrings>
-
-  <add name="DBSC" 
-       connectionString="Data Source=DESKTOP-AJLG630\hash;Initial Catalog=dbSE2;Integrated Security=True"
-      providerName="System.Data.SqlClient" />
-
-</connectionStrings>

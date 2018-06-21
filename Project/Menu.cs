@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Project
 {
-    public partial class Menu : MetroFramework .Forms .MetroForm
+    public partial class Menu : Form
     {
         public Menu()
         {
@@ -23,16 +23,6 @@ namespace Project
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Menu_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
         {
 
         }

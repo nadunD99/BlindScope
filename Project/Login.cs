@@ -11,7 +11,7 @@ using DAL;
 
 namespace Project
 {
-    public partial class Login : MetroFramework .Forms .MetroForm
+    public partial class Login : Form
     {
         string ex, name;
         public Login()
@@ -28,6 +28,7 @@ namespace Project
         {
             csProperties.Name = txtUsername.Text;
             csProperties.Pword = txtPw.Text;
+            csProperties.UserName = txtUsername.Text;
             csDBOperator obj = new csDBOperator();
             int count = obj.mgetLogin(out ex, out name);
             if (count == 1)
@@ -42,16 +43,6 @@ namespace Project
                 MessageBox.Show("Inccorect User name or password");
                
             }
-        }
-
-        private void Login_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtPw_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
