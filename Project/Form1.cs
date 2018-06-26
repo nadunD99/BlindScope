@@ -15,23 +15,25 @@ using System.Threading;
 
 namespace Project
 {
-    public partial class Form1 : MetroFramework .Forms .MetroForm
+    public partial class Form1 : MetroFramework.Forms.MetroForm
     {
 
         #region variables
         int[] myarray = { 1, 2, 4, 2, 1, 3, 5 };
+        static int iddd;
         List<string> city1 = new List<string>();
         List<string> numb = new List<string>();
         private string date = DateTime.Now.Date.ToString("MM/dd/yyyy");
         string ex;
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         List<int> GetVala = new List<int>();
-        decimal OLOST, OBALACE, OPROFIT;
+        decimal OLOST, OBALACE, OPROFIT, OPPRICE,OPSTOCK;
         private List<int> DID = new List<int>();
         private List<int> DValue = new List<int>();
         private List<string> DDATE = new List<string>();
         private static List<int> DDValueTrim = new List<int>();
-        string uname;
+        private static List<int> IDValueTrim = new List<int>();
+        string uname;int users;
         #endregion
         csDBOperator obj = new csDBOperator();
         public Form1(string UNAME)
@@ -54,65 +56,14 @@ namespace Project
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            //chart1.Series[0].Points.DataBindY(GetVala);
-            //chart1.Series[1].Points.DataBindY(myarray);
-           
+            csProperties.Date = date;
         }
-        void getValuesFromYFinance()
+        private void Active()
         {
-            try
-            {
-                WebClient w = new WebClient();
-                string s = w.DownloadString("https://finance.yahoo.com/quote/CSV/history/?guccounter=1");
-
-                // 2.
-                foreach (csLinkItem i in LinkFinder.Find(s))
-                {
-                    city1.Add(i.ToString());
-                }
-
-                for (int i = 0; i < city1.Count; i++)
-                {
-                    numb.Add(CleanStringOfNonDigits_V3(city1[i]));
-                    if (numb[i] == "")
-                    {
-                        numb[i] = "10";
-                    }
-                }
-                //listBox1.DataSource = numb;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("check the internet connection");
-            }
-        }
-        
-        private static Regex rxDigits = new Regex(@"[\d]+");
-
-        private string CleanStringOfNonDigits_V3(string s)
-        {
-            if (string.IsNullOrEmpty(s)) return s;
-            StringBuilder sb = new StringBuilder();
-            for (Match m = rxDigits.Match(s); m.Success; m = m.NextMatch())
-            {
-                sb.Append(m.Value);
-            }
-            string cleaned = sb.ToString();
-            return cleaned;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            getValuesFromYFinance();
-            SetValues();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            
             try
             {
                 csDBOperator obj001 = new csDBOperator();
+                obj001.mcbgetCurrentID(out iddd);
                 string msg = obj001.mdDataFEED();
                 MessageBox.Show(msg);
             }
@@ -121,11 +72,18 @@ namespace Project
                 MessageBox.Show(ex.ToString());
             }
         }
+       
+      
         void SetValues()
         {
+           
+            csGetVal obj = new csGetVal();
+            obj.getValuesFromYFinance(out numb);
+           
             csProperties.Value = numb;
             csProperties.ID = 1;
             csProperties.Date = date;
+            MessageBox.Show(numb.Count.ToString());
                           
         }
         void GetValues()
@@ -134,51 +92,71 @@ namespace Project
             obj00.mcbgetTableAvailable(out DID,out DDATE,out DValue,out ex);
             for (int i = 0; i < DValue.Count; i++)
             {
-                if (DValue[i] < 1000)
+                if (DValue[i] < 5000)
                 {
                     DDValueTrim.Add(DValue[i]);
+                    IDValueTrim.Add(DID[i]);
                 }
              }
-            MessageBox.Show(DDValueTrim.Count.ToString());
+            MessageBox.Show(DValue.Count.ToString());
            
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            GetValues();
-        }
+       
         int c;
         private void button4_Click(object sender, EventArgs e)
         {
-            chart1.Series[0].Points.DataBindY(TempVal);
-            c = TempVal.Count;
-            label1.Text = TempVal[c-1].ToString();
+            try
+            {
+                chart1.Series[0].Points.DataBindY(TempVal);
+                c = TempVal.Count;
+                label1.Text = TempVal[c - 1].ToString();
+            }
+            catch (Exception) { }
         }
         static List<int> TempVal = new List<int>();
+        static List<int> TempIDVal = new List<int>();
         Thread t1 = new Thread(new ThreadStart(printNumbers));
         static void printNumbers()
         {
 
-            
+            csDBOperator obj2 = new csDBOperator();
             for (int i = 0; i < DDValueTrim.Count; i++)
             {
-                Form1 obj = new Form1("v");
-                TempVal.Add(DDValueTrim[i]);
-                obj.chart1.Series[0].Points.DataBindY(TempVal);
-                Thread.Sleep(5000);
+                //if (IDValueTrim[i] == iddd)
+                //{
+                    Form1 obj = new Form1("v");
+                    TempVal.Add(DDValueTrim[i]);
+                    TempIDVal.Add(IDValueTrim[i]);
+                    obj.chart1.Series[0].Points.DataBindY(TempVal);
+                    //MessageBox.Show(IDValueTrim[i].ToString());
+                    obj2.mdDataFEED5(IDValueTrim[i]);
+                    Thread.Sleep(5000);
+                //}
             }
         }
 
-      
-        private void button5_Click(object sender, EventArgs e)
+        void start()
         {
             t1.Start();
             timer.Start();
         }
 
+       
         private void button6_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(uname);
+            BuyStock obb = new BuyStock(label1.Text,OBALACE);
+            obb.ShowDialog();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            label9.Text = csProperties.Number.ToString();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            mLoadSecondList();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -192,24 +170,105 @@ namespace Project
             timer.Stop();
         }
 
+        private void button7_Click(object sender, EventArgs e)
+        {
+            csProperties.StockValu = Convert.ToInt32(label1.Text);
+            Sale obj = new Sale();
+            obj.ShowDialog();
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void catarpillarINCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void boeingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bMWToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sAMPATHBANKToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            csProperties.Sectorid = 1;
+            csProperties.Stockid = 1;
+            csProperties.IDD = 1;
+        }
+
+        private void bOCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            csProperties.Sectorid = 2;
+            csProperties.Stockid = 1;
+            csProperties.IDD = 2;
+        }
+
+        private void hNBToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            csProperties.Sectorid = 3;
+            csProperties.Stockid = 1;
+            csProperties.IDD = 3;
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            PlayerStar();
+            Thread.Sleep(2000);
+            SetValues();
+            Thread.Sleep(2000);
+            Active();
+            Thread.Sleep(2000);
+            GetValues();
+            Thread.Sleep(2000);
+            start();
+            Thread.Sleep(2000);
+        }
+        void PlayerStar()
+        {
+            csDBOperator obj = new csDBOperator();
+            string msg= obj.mdDataFEED4(out users);
+            MessageBox.Show(msg);
+            MessageBox.Show(users.ToString());
+        }
+
         private void chart1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        List<string> data = new List<string>();
+        void clearList()
         {
-            mLoadplyerStat();
+            data.Clear();
+            //listBox2.Items.Clear();
         }
+        
+
         void mLoadplyerStat()
         {
-            obj.mcbgetPlayerStat(out OLOST,out OPROFIT,out OBALACE,uname);
-            List<string> data = new List<string>();
-            data.Add(uname);
+            obj.mcbgetPlayerStat(out OPPRICE,out OPSTOCK,out OLOST,out OPROFIT,out OBALACE,uname);
+           data.Add(uname);
             data.Add(OPROFIT.ToString());
             data.Add(OLOST.ToString());
             data.Add(OBALACE.ToString());
+            data.Add(OPPRICE.ToString());
+            data.Add(OPSTOCK.ToString());
             listBox2.DataSource = data;
+
+        }
+        void mLoadSecondList()
+        {
+            listBox1.Items.Add(csProperties.Number);
+            listBox1.Items.Add(csProperties.Balance);
+            listBox1.Items.Add(csProperties.Price);
 
         }
     }

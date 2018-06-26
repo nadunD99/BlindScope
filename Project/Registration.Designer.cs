@@ -40,7 +40,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(286, 219);
+            this.button1.Location = new System.Drawing.Point(297, 272);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -50,21 +50,21 @@
             // 
             // txtusername
             // 
-            this.txtusername.Location = new System.Drawing.Point(244, 115);
+            this.txtusername.Location = new System.Drawing.Point(255, 148);
             this.txtusername.Name = "txtusername";
             this.txtusername.Size = new System.Drawing.Size(193, 20);
             this.txtusername.TabIndex = 1;
             // 
             // txtpass
             // 
-            this.txtpass.Location = new System.Drawing.Point(244, 141);
+            this.txtpass.Location = new System.Drawing.Point(255, 186);
             this.txtpass.Name = "txtpass";
             this.txtpass.Size = new System.Drawing.Size(193, 20);
             this.txtpass.TabIndex = 1;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(244, 170);
+            this.textBox3.Location = new System.Drawing.Point(255, 221);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(193, 20);
             this.textBox3.TabIndex = 1;
@@ -72,7 +72,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(143, 118);
+            this.label1.Location = new System.Drawing.Point(157, 155);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 2;
@@ -81,7 +81,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(143, 145);
+            this.label2.Location = new System.Drawing.Point(157, 193);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 2;
@@ -91,7 +91,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(143, 173);
+            this.label3.Location = new System.Drawing.Point(157, 228);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 13);
             this.label3.TabIndex = 2;
@@ -100,7 +100,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(367, 218);
+            this.button2.Location = new System.Drawing.Point(378, 271);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(70, 24);
             this.button2.TabIndex = 3;
@@ -122,7 +122,7 @@
             this.Controls.Add(this.txtusername);
             this.Controls.Add(this.button1);
             this.Name = "Registration";
-            this.Text = "Player Registration";
+            this.Text = "Registration";
             this.Load += new System.EventHandler(this.Registration_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

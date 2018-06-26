@@ -11,7 +11,7 @@ using DAL;
 
 namespace Project
 {
-    public partial class Login : MetroFramework .Forms .MetroForm
+    public partial class Login : MetroFramework.Forms.MetroForm
     {
         string ex, name;
         public Login()
@@ -28,6 +28,7 @@ namespace Project
         {
             csProperties.Name = txtUsername.Text;
             csProperties.Pword = txtPw.Text;
+            csProperties.UserName = txtUsername.Text;
             csDBOperator obj = new csDBOperator();
             int count = obj.mgetLogin(out ex, out name);
             if (count == 1)
@@ -46,12 +47,7 @@ namespace Project
 
         private void Login_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void txtPw_TextChanged(object sender, EventArgs e)
-        {
-
+           
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -59,5 +55,6 @@ namespace Project
             Registration obj = new Registration();
             obj.Show();
         }
+        
     }
 }

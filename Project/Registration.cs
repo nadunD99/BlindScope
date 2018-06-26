@@ -11,8 +11,7 @@ using DAL;
 
 namespace Project
 {
-    public partial class Registration : MetroFramework .Forms .MetroForm
-    
+    public partial class Registration : MetroFramework.Forms.MetroForm
     {
         string x;
         public Registration()

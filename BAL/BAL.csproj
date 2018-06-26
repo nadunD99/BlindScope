@@ -43,9 +43,16 @@
     <Compile Include="csBank.cs" />
     <Compile Include="csBroker.cs" />
     <Compile Include="csBuy.cs" />
+    <Compile Include="csGetVal.cs" />
     <Compile Include="csLinkItem.cs" />
     <Compile Include="csSale.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{8a5be68d-57cd-492f-87f3-22457d66950d}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
