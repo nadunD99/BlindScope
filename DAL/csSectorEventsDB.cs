@@ -140,7 +140,7 @@ namespace DAL
             }
             if (min > max)
             {
-                s = "Bus";
+                s = "Bust";
             }
             else
             {

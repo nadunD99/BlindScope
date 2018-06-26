@@ -47,7 +47,6 @@
     <Compile Include="csGetVal.cs" />
     <Compile Include="csLinkItem.cs" />
     <Compile Include="csSale.cs" />
-    <Compile Include="csSecterEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
