@@ -19,7 +19,7 @@ namespace DAL
         //public DataSet ds;
 
         // protected static string cs = ConfigurationManager.ConnectionStrings["DBSC"].ConnectionString;
-        protected static string cs = "Data Source=DESKTOP-AJLG630\\hash;Initial Catalog=dbSE2;Integrated Security=True;Min Pool Size=10; Max Pool Size=100";
+        protected static string cs = "Data Source=119.235.7.221,1433;Initial Catalog=dbSE2;Integrated Security=True;Min Pool Size=10; Max Pool Size=100;User ID=sa;Password=sa@123";
 
 
         protected void open_connection()

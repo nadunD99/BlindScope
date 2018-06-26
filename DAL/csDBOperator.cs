@@ -525,18 +525,16 @@ namespace DAL
                 {
 
                     open_connection();
-                    sqlquery("select * from vw_tbgetData WHERE UNAME ='" + IDD + "'");
+                    sqlquery("select * from vw_tbgetData WHERE tabno ='" + IDD + "'");
 
                     quryEx2();
                     while (dr.Read())
                     {
-                        crid = dr.GetInt16(1);
+                        crid = dr.GetInt32(1);
                        
                     }
                 }
-                CRID = crid;
-               
-
+                CRID = crid;    
                 ex = "OK";
             }
             catch (SqlException e)
@@ -549,5 +547,246 @@ namespace DAL
                 closeconnection();
             }
         }
+        public void mcbgetgetVAL(out decimal OPPRICE, out decimal OPSTOCK, out decimal OLOST, out decimal OPROFIT, out decimal OBALACE, string PUNAME)
+        {
+            try
+            {
+                using (con = new SqlConnection(csConnection.cs))
+                {
+
+                    open_connection();
+                    sqlquery("SELECT * FROM VW_PLYAERSTAT WHERE UNAME='" + PUNAME + "'");
+
+                    quryEx2();
+                    while (dr.Read())
+                    {
+                        LOST = dr.GetDecimal(2);
+                        BALACE = dr.GetDecimal(5);
+                        PROFIT = dr.GetDecimal(1);
+                        PPRICE = dr.GetDecimal(4);
+                        PSTOCK = dr.GetInt32(3);
+                    }
+                }
+                OPPRICE = PPRICE;
+                OPSTOCK = PROFIT;
+                OLOST = LOST;
+                OBALACE = BALACE;
+                OPROFIT = PROFIT;
+
+                ex = "OK";
+            }
+            catch (SqlException e)
+            {
+                OPPRICE = PPRICE;
+                OPSTOCK = PROFIT;
+                OLOST = LOST;
+                OBALACE = BALACE;
+                OPROFIT = PROFIT;
+                ex = e.ToString();
+            }
+            finally
+            {
+                closeconnection();
+            }
+        }
+        public string mdbuyWithAI(int val,int price,int stokcs)
+        {
+            try
+            {
+                using (con = new SqlConnection(cs))
+                {
+
+                    open_connection();
+                    sqlquery("sp_aibuy");
+                    cmd.CommandType = CommandType.StoredProcedure;
+                   
+                    cmd.Parameters.AddWithValue("@uname", NAME);
+                    cmd.Parameters.AddWithValue("@avabalacnce", 0);
+                    cmd.Parameters.AddWithValue("@val", val);
+                    cmd.Parameters.AddWithValue("@id1", sectorid);
+                    cmd.Parameters.AddWithValue("@id2", stockid);
+                    cmd.Parameters.AddWithValue("@price", price);
+                    cmd.Parameters.AddWithValue("@stocks", stokcs);
+                    cmd.Parameters.AddWithValue("@bankbal", 0);
+                    sqlnonquery();
+
+                }
+
+                return "save";
+            }
+
+            catch (SqlException ex)
+            {
+                return ex.ToString();
+            }
+            finally
+            {
+                closeconnection();
+            }
+        }
+        public string mdSaleWithAI(int val, int price, int stokcs)
+        {
+            try
+            {
+                using (con = new SqlConnection(cs))
+                {
+
+                    open_connection();
+                    sqlquery("sp_aisale");
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@sale_price", NAME);
+                    cmd.Parameters.AddWithValue("@profit", 0);
+                    cmd.Parameters.AddWithValue("@lost", val);
+                    cmd.Parameters.AddWithValue("@balance", stockid);
+                    cmd.Parameters.AddWithValue("@perchasestock", price);
+                    cmd.Parameters.AddWithValue("@prprice", stokcs);
+                    sqlnonquery();
+
+                }
+
+                return "save";
+            }
+
+            catch (SqlException ex)
+            {
+                return ex.ToString();
+            }
+            finally
+            {
+                closeconnection();
+            }
+        }
+        public DataTable mViewData(out string ex)
+        {
+            try
+            {
+                using (con = new SqlConnection(csConnection.cs))
+                {
+                    open_connection();
+                    sqlquery("select * from vw_playerstat");
+                    ex = "Executed";
+                    return quryEx();
+                }
+            }
+            catch (SqlException e)
+            {
+                ex = e.ToString();
+                return quryEx();
+            }
+            finally
+            {
+                closeconnection();
+            }
+        }
+        public DataTable mViewSALE(out string ex)
+        {
+            try
+            {
+                using (con = new SqlConnection(csConnection.cs))
+                {
+                    open_connection();
+                    sqlquery("select * from vw_sale where Uname='"+NAME+"'");
+                    ex = "Executed";
+                    return quryEx();
+                }
+            }
+            catch (SqlException e)
+            {
+                ex = e.ToString();
+                return quryEx();
+            }
+            finally
+            {
+                closeconnection();
+            }
+        }
+        public DataTable mViewBUY(out string ex)
+        {
+            try
+            {
+                using (con = new SqlConnection(csConnection.cs))
+                {
+                    open_connection();
+                    sqlquery("select * from vw_buy where Uname='"+NAME+"'");
+                    ex = "Executed";
+                    return quryEx();
+                }
+            }
+            catch (SqlException e)
+            {
+                ex = e.ToString();
+                return quryEx();
+            }
+            finally
+            {
+                closeconnection();
+            }
+        }
+        public string mdAi(string active)
+        {
+            try
+            {
+               
+                    using (con = new SqlConnection(cs))
+                    {
+
+                        open_connection();
+                        sqlquery("sp_aipl");
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@val", active);
+                        
+                        sqlnonquery();
+
+                    }
+                    closeconnection();
+               
+                return "save";
+            }
+
+            catch (SqlException ex)
+            {
+                closeconnection();
+                return ex.ToString();
+            }
+            finally
+            {
+                closeconnection();
+            }
+        }
+        string ss;
+        public void mcbai(out string CRID)
+        {
+            try
+            {
+                
+                using (con = new SqlConnection(csConnection.cs))
+                {
+
+                    open_connection();
+                    sqlquery("select * from vw_aipl");
+
+                    quryEx2();
+                    while (dr.Read())
+                    {
+                        ss = dr.GetString(0);
+
+                    }
+                }
+                CRID = ss;
+                ex = "OK";
+            }
+            catch (SqlException e)
+            {
+                CRID = ss;
+                ex = e.ToString();
+            }
+            finally
+            {
+                closeconnection();
+            }
+        }
+
+
     }
 }

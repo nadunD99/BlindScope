@@ -77,11 +77,11 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menu.cs">
+    <Compile Include="PlayerStat.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Menu.Designer.cs">
-      <DependentUpon>Menu.cs</DependentUpon>
+    <Compile Include="PlayerStat.Designer.cs">
+      <DependentUpon>PlayerStat.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,8 +106,8 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menu.resx">
-      <DependentUpon>Menu.cs</DependentUpon>
+    <EmbeddedResource Include="PlayerStat.resx">
+      <DependentUpon>PlayerStat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -117,6 +117,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Registration.resx">
       <DependentUpon>Registration.cs</DependentUpon>
@@ -143,6 +144,11 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\untitled-3.gif" />
+    <None Include="Resources\Black.jpg" />
+    <None Include="Resources\52a650650a45b13c3fe84a523490455c.gif" />
+    <Content Include="Resources\kisspng-chart-stock-market-finance-icon-blue-stock-market-analysis-chart-5a7a96c0e328b2.2579946415179834249305.jpg" />
+    <None Include="Resources\stock-market-3_1187x528_0.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BAL\BAL.csproj">
