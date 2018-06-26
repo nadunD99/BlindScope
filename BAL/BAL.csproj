@@ -40,12 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="csAnalysiscs.cs" />
     <Compile Include="csBank.cs" />
     <Compile Include="csBroker.cs" />
     <Compile Include="csBuy.cs" />
     <Compile Include="csGetVal.cs" />
     <Compile Include="csLinkItem.cs" />
     <Compile Include="csSale.cs" />
+    <Compile Include="csSecterEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

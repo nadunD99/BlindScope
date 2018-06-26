@@ -16,7 +16,7 @@ namespace Project
         decimal bal, curent,val,tot,temp;
         double bal1, vall, grandbal;
         int stoks;
-        
+        string x;
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -25,9 +25,20 @@ namespace Project
             MessageBox.Show(msg);
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        void LoadData()
+        {
+            csDBOperator obj = new csDBOperator();
+            dataGridView1.DataSource = obj.mViewBUY(out x).DefaultView;
+
+        }
         public BuyStock(string curentval,decimal balance)
         {
             InitializeComponent();
+            LoadData();
             curent = Convert.ToDecimal(curentval);
             bal = Convert.ToDecimal(balance);
             lblbalance.Text = balance.ToString();
@@ -64,7 +75,7 @@ namespace Project
              vall = Convert.ToDouble(label7.Text);
              grandbal = bal1 - vall;
             lblbalance.Text = grandbal.ToString();
-            //Calc Balance 
+
         }
         private void BuyStock_Load(object sender, EventArgs e)
         {

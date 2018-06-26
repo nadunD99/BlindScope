@@ -35,19 +35,25 @@ namespace Project
             {
                 MessageBox.Show("Welcome Mr:" + name);
                 Form1 obj00 = new Form1(name);
+                this.Hide();
                 obj00.ShowDialog();
                 
             }
             else
             {
                 MessageBox.Show("Inccorect User name or password");
-               //Error Message Passing
+               
             }
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
            
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

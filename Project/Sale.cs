@@ -14,17 +14,15 @@ namespace Project
     public partial class Sale : MetroFramework.Forms.MetroForm
     {
         int price, stock;
-        string name, name2;
+        string name, name2,x;
         public Sale()
         {
-            InitializeComponent();
+            InitializeComponent(); Display();
         }
         private void button2_Click(object sender, EventArgs e)
         {
             SetSalesVal(); SalesSet();
-
-
-
+            
         }
         void SetSalesVal()
         {
@@ -43,6 +41,12 @@ namespace Project
 
         private void Sale_Load(object sender, EventArgs e)
         {
+
+        }
+        void Display()
+        {
+            csDBOperator obj = new csDBOperator();
+            dataGridView1.DataSource = obj.mViewSALE(out x).DefaultView;
 
         }
 

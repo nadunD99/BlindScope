@@ -44,6 +44,7 @@
     <Compile Include="csConnection.cs" />
     <Compile Include="csDBOperator.cs" />
     <Compile Include="csProperties.cs" />
+    <Compile Include="csSectorEventsDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
