@@ -230,6 +230,7 @@ namespace Project
             Thread.Sleep(2000);
             start();
             Thread.Sleep(2000);
+            //Thread.Sleep
         }
         void PlayerStar()
         {
