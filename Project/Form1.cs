@@ -269,7 +269,7 @@ namespace Project
             listBox1.Items.Add(csProperties.Number);
             listBox1.Items.Add(csProperties.Balance);
             listBox1.Items.Add(csProperties.Price);
-
+//listbox.Items.ADD
         }
     }
 }
