@@ -64,7 +64,7 @@ namespace Project
              vall = Convert.ToDouble(label7.Text);
              grandbal = bal1 - vall;
             lblbalance.Text = grandbal.ToString();
-
+            //Calc Balance 
         }
         private void BuyStock_Load(object sender, EventArgs e)
         {
