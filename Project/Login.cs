@@ -35,7 +35,6 @@ namespace Project
             {
                 MessageBox.Show("Welcome Mr:" + name);
                 Form1 obj00 = new Form1(name);
-                this.Hide();
                 obj00.ShowDialog();
                 
             }
