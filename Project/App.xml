@@ -2,7 +2,6 @@
 <connectionStrings>
 
   <add name="DBSC" 
-       connectionString="Data Source=DESKTOP-AJLG630\hash;Initial Catalog=dbSE2;Integrated Security=True"
-      providerName="System.Data.SqlClient" />
+       connectionString="Data Source=119.235.7.221,1433;Initial Catalog=dbSE2;Persist Security Info=True;Min Pool Size=10; Max Pool Size=100;User ID=sa;Password=sa@123" />
 
 </connectionStrings>

@@ -355,7 +355,7 @@ namespace Project
                 Thread.Sleep(2000);
                 MessageBox.Show("Minimum no of players not available,computer player will be activate..");
                 aiActive();
-                //ai.Start();
+                ai.Start();
 
             }
             else
