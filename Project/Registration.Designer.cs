@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Registration));
             this.button1 = new System.Windows.Forms.Button();
             this.txtusername = new System.Windows.Forms.TextBox();
             this.txtpass = new System.Windows.Forms.TextBox();
@@ -74,9 +75,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(221, 129);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "User Name";
+            this.label1.Text = "Username";
             // 
             // label2
             // 
@@ -121,6 +122,7 @@
             this.Controls.Add(this.txtpass);
             this.Controls.Add(this.txtusername);
             this.Controls.Add(this.button1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Registration";
             this.Text = "Registration";
             this.Load += new System.EventHandler(this.Registration_Load);
