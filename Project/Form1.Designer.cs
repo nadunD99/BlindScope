@@ -60,6 +60,9 @@
             this.boeingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bMWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consumerServicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sAMSUNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cATToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.technologyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.googleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.microsoftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,9 +81,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.sAMSUNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cATToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -276,7 +280,7 @@
             this.button10.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.button10.BackColor = System.Drawing.Color.Silver;
             this.button10.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button10.Location = new System.Drawing.Point(681, 313);
+            this.button10.Location = new System.Drawing.Point(906, 370);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(75, 23);
             this.button10.TabIndex = 19;
@@ -371,6 +375,27 @@
             this.consumerServicesToolStripMenuItem.Size = new System.Drawing.Size(155, 25);
             this.consumerServicesToolStripMenuItem.Text = "Consumer Services";
             // 
+            // sAMSUNGToolStripMenuItem
+            // 
+            this.sAMSUNGToolStripMenuItem.Name = "sAMSUNGToolStripMenuItem";
+            this.sAMSUNGToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
+            this.sAMSUNGToolStripMenuItem.Text = "SAMSUNG";
+            this.sAMSUNGToolStripMenuItem.Click += new System.EventHandler(this.sAMSUNGToolStripMenuItem_Click);
+            // 
+            // cATToolStripMenuItem
+            // 
+            this.cATToolStripMenuItem.Name = "cATToolStripMenuItem";
+            this.cATToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
+            this.cATToolStripMenuItem.Text = "CAT";
+            this.cATToolStripMenuItem.Click += new System.EventHandler(this.cATToolStripMenuItem_Click);
+            // 
+            // lGToolStripMenuItem
+            // 
+            this.lGToolStripMenuItem.Name = "lGToolStripMenuItem";
+            this.lGToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
+            this.lGToolStripMenuItem.Text = "LG";
+            this.lGToolStripMenuItem.Click += new System.EventHandler(this.lGToolStripMenuItem_Click);
+            // 
             // technologyToolStripMenuItem
             // 
             this.technologyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -384,21 +409,21 @@
             // googleToolStripMenuItem
             // 
             this.googleToolStripMenuItem.Name = "googleToolStripMenuItem";
-            this.googleToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.googleToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
             this.googleToolStripMenuItem.Text = "Google";
             this.googleToolStripMenuItem.Click += new System.EventHandler(this.googleToolStripMenuItem_Click);
             // 
             // microsoftToolStripMenuItem
             // 
             this.microsoftToolStripMenuItem.Name = "microsoftToolStripMenuItem";
-            this.microsoftToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.microsoftToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
             this.microsoftToolStripMenuItem.Text = "Microsoft";
             this.microsoftToolStripMenuItem.Click += new System.EventHandler(this.microsoftToolStripMenuItem_Click);
             // 
             // iBMToolStripMenuItem
             // 
             this.iBMToolStripMenuItem.Name = "iBMToolStripMenuItem";
-            this.iBMToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.iBMToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
             this.iBMToolStripMenuItem.Text = "IBM";
             this.iBMToolStripMenuItem.Click += new System.EventHandler(this.iBMToolStripMenuItem_Click);
             // 
@@ -546,26 +571,45 @@
             this.chart2.TabIndex = 33;
             this.chart2.Text = "chart2";
             // 
-            // sAMSUNGToolStripMenuItem
+            // label14
             // 
-            this.sAMSUNGToolStripMenuItem.Name = "sAMSUNGToolStripMenuItem";
-            this.sAMSUNGToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
-            this.sAMSUNGToolStripMenuItem.Text = "SAMSUNG";
-            this.sAMSUNGToolStripMenuItem.Click += new System.EventHandler(this.sAMSUNGToolStripMenuItem_Click);
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(611, 137);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(67, 20);
+            this.label14.TabIndex = 34;
+            this.label14.Text = "Analysis";
             // 
-            // cATToolStripMenuItem
+            // label15
             // 
-            this.cATToolStripMenuItem.Name = "cATToolStripMenuItem";
-            this.cATToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
-            this.cATToolStripMenuItem.Text = "CAT";
-            this.cATToolStripMenuItem.Click += new System.EventHandler(this.cATToolStripMenuItem_Click);
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(677, 138);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(36, 20);
+            this.label15.TabIndex = 35;
+            this.label15.Text = "Buy";
             // 
-            // lGToolStripMenuItem
+            // label16
             // 
-            this.lGToolStripMenuItem.Name = "lGToolStripMenuItem";
-            this.lGToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
-            this.lGToolStripMenuItem.Text = "LG";
-            this.lGToolStripMenuItem.Click += new System.EventHandler(this.lGToolStripMenuItem_Click);
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(628, 392);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(115, 20);
+            this.label16.TabIndex = 36;
+            this.label16.Text = "Stock Analysisi";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(749, 392);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(51, 20);
+            this.label17.TabIndex = 37;
+            this.label17.Text = "Boom";
             // 
             // Form1
             // 
@@ -573,6 +617,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1139, 545);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.chart2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
@@ -666,6 +714,10 @@
         private System.Windows.Forms.ToolStripMenuItem sAMSUNGToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cATToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lGToolStripMenuItem;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
     }
 }
 

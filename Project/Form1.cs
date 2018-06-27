@@ -174,8 +174,11 @@ namespace Project
                         new csAnalysiscs(x);
                         Thread.Sleep(1000);
                         Analysis = csAnalysiscs.AnalysisData();
-                        MessageBox.Show("Analysis says :"+Analysis + ",Stcok chart says"+ms);
-
+                        if (i < 4)
+                        {
+                            MessageBox.Show("Analysis says :" + Analysis + ",Stcok chart says" + ms);
+                            i++;
+                        }
                         Thread.Sleep(5000);
                     }
                 }
@@ -209,8 +212,11 @@ namespace Project
                 new csAnalysiscs(x);
                 Thread.Sleep(1000);
                 Analysis = csAnalysiscs.AnalysisData();
-                MessageBox.Show("Analysis says :" + Analysis + ",Stcok chart says" + ms);
-                
+                if (i < 4)
+                {
+                    MessageBox.Show("Analysis says :" + Analysis + ",Stcok chart says" + ms);
+                    i++;
+                }
                 Thread.Sleep(5000);
             }
         }
@@ -370,7 +376,8 @@ namespace Project
             button2.Hide();button4.Hide(); button6.Hide();button7.Hide();
             button9.Hide(); button10.Hide();  button8.Hide(); listBox1.Hide();
             listBox3.Hide(); button3.Hide();label10.Hide();button11.Hide();
-            label1.Hide();label2.Hide();label9.Hide();chart2.Hide();
+            label1.Hide();label2.Hide();label9.Hide();chart2.Hide(); label14.Hide(); label15.Hide();
+            label16.Hide(); label17.Hide();
         }
         void visible()
         {
@@ -379,7 +386,7 @@ namespace Project
             button4.Visible = true;button6.Visible = true;button7.Visible = true;
             button9.Visible = true;button10.Visible = true;button8.Visible = true;
             label1.Visible = true;label2.Visible = true;button3.Visible = true;
-            chart2.Visible = true;
+            chart2.Visible = true; label14.Visible = true; label15.Visible = true; label16.Visible = true; label17.Visible = true;
             //pictureBox1.Visible = true;
 
         }
