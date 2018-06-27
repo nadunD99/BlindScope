@@ -23,4 +23,4 @@ Instructions
 
 To open the project.exe navigate to folder 
 
-Path - Project\Project\bin\Debug\project.exe
+Path - Project\bin\Debug\project.exe
